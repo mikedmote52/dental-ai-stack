@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dental AI Stack — 10 Ready-to-Deploy n8n Automations for Dental Practices</title>
+<meta name="description" content="Pre-built n8n automation workflows designed specifically for dental practices. Appointment reminders, review requests, insurance verification, and more. $149 one-time or $29/mo.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0f1a;--surface:#111827;--surface2:#1a2236;--border:#1e293b;
+  --text:#e2e8f0;--text-dim:#94a3b8;--accent:#3b82f6;--accent-glow:#2563eb;
+  --green:#10b981;--orange:#f59e0b;--purple:#8b5cf6;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Hero */
+.hero{text-align:center;padding:5rem 1.5rem 4rem;background:linear-gradient(180deg,#0f172a 0%,var(--bg) 100%);position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,.08) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-block;background:rgba(59,130,246,.12);color:var(--accent);font-size:.8rem;font-weight:600;padding:.35rem .9rem;border-radius:100px;border:1px solid rgba(59,130,246,.2);margin-bottom:1.5rem;letter-spacing:.03em;text-transform:uppercase}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;margin-bottom:1rem;letter-spacing:-.02em}
+h1 span{background:linear-gradient(135deg,var(--accent),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.15rem;color:var(--text-dim);max-width:600px;margin:0 auto 2rem}
+.cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;padding:.85rem 2rem;border-radius:10px;border:none;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 24px rgba(59,130,246,.25)}
+.btn-primary:hover{background:var(--accent-glow);box-shadow:0 0 36px rgba(59,130,246,.35);text-decoration:none}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+
+/* Sections */
+.section{padding:4rem 1.5rem;max-width:1100px;margin:0 auto}
+.section-label{color:var(--accent);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
+.section h2{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.section .subtitle{color:var(--text-dim);margin-bottom:2.5rem;font-size:1.05rem}
+
+/* Workflow cards */
+.workflow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.wf-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color .2s}
+.wf-card:hover{border-color:var(--accent)}
+.wf-card .icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:.75rem}
+.wf-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.4rem}
+.wf-card p{font-size:.9rem;color:var(--text-dim);line-height:1.55}
+.wf-card .tag{display:inline-block;font-size:.7rem;font-weight:600;padding:.2rem .55rem;border-radius:6px;margin-top:.6rem;text-transform:uppercase;letter-spacing:.04em}
+.tag-saves{background:rgba(16,185,129,.12);color:var(--green)}
+.tag-revenue{background:rgba(245,158,11,.12);color:var(--orange)}
+.tag-experience{background:rgba(139,92,246,.12);color:var(--purple)}
+
+/* How it works */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;counter-reset:step}
+.step{position:relative;padding-left:3.5rem}
+.step::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:2.5rem;height:2.5rem;border-radius:50%;background:rgba(59,130,246,.12);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;border:1px solid rgba(59,130,246,.25)}
+.step h3{font-size:1rem;font-weight:600;margin-bottom:.3rem}
+.step p{font-size:.88rem;color:var(--text-dim)}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1rem}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:2rem;position:relative}
+.price-card.featured{border-color:var(--accent);box-shadow:0 0 40px rgba(59,130,246,.1)}
+.price-card .label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);margin-bottom:.5rem}
+.price-card .price{font-size:2.5rem;font-weight:800;margin-bottom:.25rem}
+.price-card .price span{font-size:1rem;font-weight:400;color:var(--text-dim)}
+.price-card .desc{color:var(--text-dim);font-size:.9rem;margin-bottom:1.5rem}
+.price-card ul{list-style:none;margin-bottom:1.75rem}
+.price-card li{font-size:.9rem;padding:.4rem 0;padding-left:1.4rem;position:relative;color:var(--text-dim)}
+.price-card li::before{content:'\2713';position:absolute;left:0;color:var(--green);font-weight:700}
+
+/* Form */
+.form-section{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2.5rem;max-width:640px;margin:0 auto}
+.form-section h2{text-align:center;margin-bottom:.4rem}
+.form-section .subtitle{text-align:center}
+form{display:flex;flex-direction:column;gap:1rem}
+label{font-size:.85rem;font-weight:600;color:var(--text-dim)}
+input,select,textarea{width:100%;padding:.75rem 1rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;font-family:inherit}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{resize:vertical;min-height:80px}
+.form-btn{background:var(--accent);color:#fff;font-weight:600;font-size:1rem;padding:.85rem;border-radius:10px;border:none;cursor:pointer;transition:background .2s}
+.form-btn:hover{background:var(--accent-glow)}
+.form-note{text-align:center;font-size:.8rem;color:var(--text-dim);margin-top:.5rem}
+
+/* Social proof */
+.proof-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem;padding:2rem 1.5rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:0 auto;max-width:800px;text-align:center}
+.proof-item .num{font-size:1.8rem;font-weight:800;color:var(--accent)}
+.proof-item .label{font-size:.8rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.04em}
+
+/* Footer */
+footer{text-align:center;padding:3rem 1.5rem;color:var(--text-dim);font-size:.85rem;border-top:1px solid var(--border);margin-top:2rem}
+footer a{color:var(--text-dim)}
+footer a:hover{color:var(--accent)}
+
+/* Responsive */
+@media(max-width:640px){
+  .hero{padding:3rem 1rem 2.5rem}
+  .section{padding:2.5rem 1rem}
+  .form-section{padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="badge">Built for Dental Practices</div>
+  <h1>Stop Losing Patients to<br><span>Manual Busywork</span></h1>
+  <p>10 pre-built n8n automations that handle appointment reminders, review requests, insurance follow-ups, and more. Deploy in an afternoon, not a quarter.</p>
+  <div class="cta-row">
+    <a href="#pricing" class="btn btn-primary">Get the Pack &mdash; $149</a>
+    <a href="#workflows" class="btn btn-outline">See All 10 Workflows</a>
+  </div>
+</section>
+
+<!-- Social proof bar -->
+<div class="proof-bar">
+  <div class="proof-item"><div class="num">10</div><div class="label">Automations</div></div>
+  <div class="proof-item"><div class="num">15+</div><div class="label">Hrs Saved / Week</div></div>
+  <div class="proof-item"><div class="num">$0</div><div class="label">Monthly Software Cost*</div></div>
+  <div class="proof-item"><div class="num">1</div><div class="label">Afternoon to Deploy</div></div>
+</div>
+
+<!-- Workflows -->
+<section class="section" id="workflows">
+  <div class="section-label">What's Inside</div>
+  <h2>10 Workflows, One Practice</h2>
+  <p class="subtitle">Each workflow is production-ready with setup docs, test data, and a video walkthrough.</p>
+
+  <div class="workflow-grid">
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(59,130,246,.1);color:var(--accent)">&#128197;</div>
+      <h3>Smart Appointment Reminders</h3>
+      <p>Multi-channel (SMS + email) reminders at 48h, 24h, and 2h. Auto-reschedule links. Reduces no-shows by 30-40%.</p>
+      <span class="tag tag-saves">Saves 5+ hrs/week</span>
+    </div>
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(16,185,129,.1);color:var(--green)">&#11088;</div>
+      <h3>Post-Visit Review Requests</h3>
+      <p>Triggers after checkout. Routes happy patients to Google, catches unhappy ones privately. Builds your online reputation on autopilot.</p>
+      <span class="tag tag-revenue">Revenue driver</span>
+    </div>
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(139,92,246,.1);color:var(--purple)">&#128203;</div>
+      <h3>New Patient Intake Processor</h3>
+      <p>Digital forms auto-populate your PMS. Extracts insurance info, flags allergies, and pre-fills treatment history. Zero manual data entry.</p>
+      <span class="tag tag-saves">Saves 3+ hrs/week</span>
+    </div>
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(245,158,11,.1);color:var(--orange)">&#128737;</div>
+      <h3>Insurance Verification Bot</h3>
+      <p>Pre-appointment insurance check. Pulls eligibility, flags issues, and alerts the front desk before the patient arrives.</p>
+      <span class="tag tag-saves">Saves 4+ hrs/week</span>
+    </div>
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(59,130,246,.1);color:var(--accent)">&#128140;</div>
+      <h3>Recall &amp; Reactivation Campaigns</h3>
+      <p>Automated sequences for patients overdue for cleanings. 30/60/90-day cadence with escalating urgency. Fills open hygiene slots.</p>
+      <span class="tag tag-revenue">Revenue driver</span>
+    </div>
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(16,185,129,.1);color:var(--green)">&#128172;</div>
+      <h3>Treatment Plan Follow-Up</h3>
+      <p>Patients who received a treatment plan but didn't schedule get automated follow-ups with financing options and FAQs.</p>
+      <span class="tag tag-revenue">Revenue driver</span>
+    </div>
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(139,92,246,.1);color:var(--purple)">&#128176;</div>
+      <h3>Payment &amp; Billing Reminders</h3>
+      <p>Outstanding balance alerts via SMS and email. Payment links included. Configurable escalation schedule before collections.</p>
+      <span class="tag tag-saves">Saves 2+ hrs/week</span>
+    </div>
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(245,158,11,.1);color:var(--orange)">&#127881;</div>
+      <h3>Birthday &amp; Milestone Messages</h3>
+      <p>Personalized birthday greetings and treatment anniversaries. Optional special offers. Keeps your practice top-of-mind between visits.</p>
+      <span class="tag tag-experience">Patient experience</span>
+    </div>
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(59,130,246,.1);color:var(--accent)">&#128202;</div>
+      <h3>Daily Practice Dashboard</h3>
+      <p>Morning Slack/email digest: today's appointments, pending insurance, overdue balances, review scores. Everything at a glance.</p>
+      <span class="tag tag-saves">Saves 1+ hrs/day</span>
+    </div>
+    <div class="wf-card">
+      <div class="icon" style="background:rgba(16,185,129,.1);color:var(--green)">&#128640;</div>
+      <h3>New Patient Welcome Sequence</h3>
+      <p>5-email drip after first booking: practice intro, what to expect, parking/directions, insurance prep, and a personal note from the dentist.</p>
+      <span class="tag tag-experience">Patient experience</span>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section">
+  <div class="section-label">How It Works</div>
+  <h2>Live in an Afternoon</h2>
+  <p class="subtitle">No developer required. Just n8n (free &amp; self-hostable) and 30 minutes per workflow.</p>
+
+  <div class="steps">
+    <div class="step">
+      <h3>Import</h3>
+      <p>Download the pack. Import each .json workflow into your n8n instance with one click.</p>
+    </div>
+    <div class="step">
+      <h3>Connect</h3>
+      <p>Plug in your PMS, Twilio, Gmail, and Google Business Profile credentials. Each workflow has a setup checklist.</p>
+    </div>
+    <div class="step">
+      <h3>Test</h3>
+      <p>Run each workflow with included test data. Verify messages look right, triggers fire correctly.</p>
+    </div>
+    <div class="step">
+      <h3>Go Live</h3>
+      <p>Flip to production. Watch your front desk get 15+ hours back every week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2>Simple, One-Time Purchase</h2>
+  <p class="subtitle">No subscriptions. No per-seat fees. You own the workflows forever.</p>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="label">Workflow Pack</div>
+      <div class="price">$149</div>
+      <div class="desc">One-time payment. Lifetime updates.</div>
+      <ul>
+        <li>All 10 production-ready workflows</li>
+        <li>Setup docs + video walkthroughs</li>
+        <li>Test data for every workflow</li>
+        <li>Slack community access</li>
+        <li>60-day email support</li>
+      </ul>
+      <a href="#get-started" class="btn btn-primary" style="width:100%;justify-content:center">Get the Pack</a>
+    </div>
+    <div class="price-card featured">
+      <div class="label">Done-For-You</div>
+      <div class="price">$4,997</div>
+      <div class="desc">We deploy everything for your practice.</div>
+      <ul>
+        <li>Everything in the Workflow Pack</li>
+        <li>Full n8n instance setup &amp; hosting</li>
+        <li>PMS integration &amp; data mapping</li>
+        <li>Custom branding on all messages</li>
+        <li>Staff training session (60 min)</li>
+        <li>30 days of hands-on support</li>
+        <li>Quarterly optimization check-in</li>
+      </ul>
+      <a href="#get-started" class="btn btn-primary" style="width:100%;justify-content:center;background:var(--purple)">Book a Call</a>
+    </div>
+    <div class="price-card">
+      <div class="label">Monthly</div>
+      <div class="price">$29<span>/mo</span></div>
+      <div class="desc">Same pack, spread out. Cancel anytime.</div>
+      <ul>
+        <li>All 10 production-ready workflows</li>
+        <li>Setup docs + video walkthroughs</li>
+        <li>Test data for every workflow</li>
+        <li>Slack community access</li>
+        <li>Ongoing email support</li>
+        <li>New workflow drops monthly</li>
+      </ul>
+      <a href="#get-started" class="btn btn-outline" style="width:100%;justify-content:center">Start Monthly</a>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:.8rem;color:var(--text-dim);margin-top:1.5rem">*n8n is free and open-source. Self-host for $0 or use n8n Cloud from $24/mo.</p>
+</section>
+
+<!-- Lead capture form -->
+<section class="section" id="get-started">
+  <div class="form-section">
+    <h2>Get Started</h2>
+    <p class="subtitle">Tell us about your practice and we'll send you the right package.</p>
+    <form id="intake-form" action="https://formspree.io/f/placeholder" method="POST">
+      <div>
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Dr. Sarah Chen" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="sarah@brightsmiledental.com" required>
+      </div>
+      <div>
+        <label for="practice">Practice Name</label>
+        <input type="text" id="practice" name="practice" placeholder="Bright Smile Dental">
+      </div>
+      <div>
+        <label for="interest">I'm Interested In</label>
+        <select id="interest" name="interest">
+          <option value="pack">Workflow Pack ($149)</option>
+          <option value="monthly">Monthly ($29/mo)</option>
+          <option value="dfy">Done-For-You ($4,997)</option>
+          <option value="questions">Just Have Questions</option>
+        </select>
+      </div>
+      <div>
+        <label for="pms">What PMS Do You Use?</label>
+        <input type="text" id="pms" name="pms" placeholder="Dentrix, Eaglesoft, Open Dental...">
+      </div>
+      <div>
+        <label for="message">Anything else?</label>
+        <textarea id="message" name="message" placeholder="Tell us about your biggest front-desk bottleneck..."></textarea>
+      </div>
+      <button type="submit" class="form-btn">Send &mdash; We'll Reply Within 24 Hours</button>
+      <p class="form-note">No spam. No sales calls unless you ask for one.</p>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>Dental AI Stack is a product of <a href="https://moteops.com" target="_blank" rel="noopener">Mote Ops</a> &mdash; Fractional AI for small businesses.</p>
+  <p style="margin-top:.5rem">&copy; 2026 Mote Ops. All rights reserved.</p>
+</footer>
+
+<script>
+// Simple form handling (replace formspree URL with real endpoint)
+document.getElementById('intake-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  const btn = form.querySelector('.form-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  // For MVP, just show success (wire up real backend later)
+  setTimeout(() => {
+    form.innerHTML = '<div style="text-align:center;padding:2rem 0"><h3 style="margin-bottom:.5rem">We got your info!</h3><p style="color:var(--text-dim)">Check your inbox within 24 hours. In the meantime, here\'s what to expect:</p><ul style="list-style:none;margin-top:1rem;text-align:left;max-width:400px;margin-left:auto;margin-right:auto"><li style="padding:.3rem 0;color:var(--text-dim)">&#10003; Pack buyers: download link + setup guide</li><li style="padding:.3rem 0;color:var(--text-dim)">&#10003; Done-For-You: calendar link to book your kickoff</li><li style="padding:.3rem 0;color:var(--text-dim)">&#10003; Questions: personal reply from our team</li></ul></div>';
+  }, 800);
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
