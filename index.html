@@ -327,19 +327,28 @@ footer a:hover{color:var(--accent)}
 </footer>
 
 <script>
-// Simple form handling (replace formspree URL with real endpoint)
+// Form handler with real FormSubmit.co submission
 document.getElementById('intake-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const form = e.target;
-  const data = new FormData(form);
+  const formData = new FormData(form);
   const btn = form.querySelector('.form-btn');
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  // For MVP, just show success (wire up real backend later)
-  setTimeout(() => {
+  fetch('https://formsubmit.co/ajax/mikedmote@yahoo.com', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
     form.innerHTML = '<div style="text-align:center;padding:2rem 0"><h3 style="margin-bottom:.5rem">We got your info!</h3><p style="color:var(--text-dim)">Check your inbox within 24 hours. In the meantime, here\'s what to expect:</p><ul style="list-style:none;margin-top:1rem;text-align:left;max-width:400px;margin-left:auto;margin-right:auto"><li style="padding:.3rem 0;color:var(--text-dim)">&#10003; Pack buyers: download link + setup guide</li><li style="padding:.3rem 0;color:var(--text-dim)">&#10003; Done-For-You: calendar link to book your kickoff</li><li style="padding:.3rem 0;color:var(--text-dim)">&#10003; Questions: personal reply from our team</li></ul></div>';
-  }, 800);
+  })
+  .catch(error => {
+    btn.textContent = 'Try Again';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again or email mikedmote@yahoo.com directly.');
+  });
 });
 
 // Smooth scroll for anchor links
